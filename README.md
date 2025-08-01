@@ -1,107 +1,113 @@
-# CK3 LotR Mod - Automatisierte Übersetzungs-Skripte
+Of course. An English README is a great idea for making your project accessible to a wider audience on GitHub.
 
-Dieses Repository enthält eine Sammlung von Python-Skripten zur teilautomatisierten Übersetzung von Lokalisierungsdateien für eine "Herr der Ringe"-Mod für das Spiel Crusader Kings 3. Die Skripte nutzen die Google Gemini API, um englische Texte ins Deutsche zu übersetzen, wobei sie speziell auf die komplexe Syntax und den Kontext von Paradox-Spieldateien ausgelegt sind.
+Here is a complete, translated version of the README file.
+
+-----
+
+# CK3 LotR Mod - Automated Translation Scripts
+
+This repository contains a collection of Python scripts designed to semi-automate the translation of localization files for a "Lord of the Rings" mod for the game Crusader Kings 3. The scripts use the Google Gemini API to translate English text to German, specifically tailored to handle the complex syntax and context of Paradox game files.
 
 -----
 
 ## 🚀 Features
 
-  * **Intelligente Übersetzung:** Nutzt die Gemini API mit einem hoch entwickelten Prompt, der den Kontext (Dateiname, Tolkien- und CK3-Terminologie) versteht.
-  * **Batch-Verarbeitung:** Übersetzt Zeilen in schnellen und kostengünstigen Stapeln (Batches) für maximale Effizienz.
-  * **Syntax-Erkennung:** Behandelt automatisch spezielle Paradox-Syntax wie Game-Code `[...]`, Variablen `$var$`, Formatierungen `#bold`, Icons `@icon!` und Versionsnummern `key:1`.
-  * **Absturzsicher & Wiederaufnehmbar:** Markiert erfolgreich übersetzte Zeilen und überspringt diese bei einem Neustart, sodass der Fortschritt nie verloren geht.
-  * **Selbstheilend:** Schaltet bei seltenen API-Fehlern automatisch in einen langsameren, aber sichereren Einzelmodus, um den Prozess am Laufen zu halten.
-  * **Fehler-Protokollierung:** Schreibt Zeilen, die auch im Einzelmodus nicht übersetzt werden können, in eine `translation_errors.log`-Datei für die manuelle Nachbearbeitung.
-  * **Hilfsskripte:** Enthält separate Werkzeuge für die Dateivorbereitung, Bereinigung und spezielle Korrekturen.
+  * **Intelligent Translation:** Uses the Gemini API with a highly-developed prompt that understands context from the filename, as well as Lord of the Rings and CK3 terminology.
+  * **Batch Processing:** Translates lines in fast and cost-effective batches for maximum efficiency.
+  * **Syntax Handling:** Automatically handles special Paradox syntax, including game code `[...]`, variables `$var$`, formatting codes `#bold`, icons `@icon!`, and version numbers `key:1`.
+  * **Crash-Proof & Resumable:** Marks successfully translated lines and skips them on restart, so progress is never lost.
+  * **Self-Healing:** Automatically switches to a slower, safer single-line mode if a batch fails, keeping the process running.
+  * **Error Logging:** Writes lines that fail to translate even in single-line mode to an `translation_errors.log` file for manual review.
+  * **Helper Scripts:** Includes separate tools for file preparation, cleanup, and specific grammar corrections.
 
 -----
 
-## ⚙️ Setup & Konfiguration
+## ⚙️ Setup & Configuration
 
-### 1\. Voraussetzungen
+### 1\. Prerequisites
 
-Stelle sicher, dass Python 3 auf deinem System installiert ist. Installiere dann die notwendigen Python-Bibliotheken über das Terminal:
+Ensure you have Python 3 installed on your system. Then, install the necessary Python libraries by running the following command in your terminal:
 
 ```sh
 pip install python-dotenv google-generativeai
 ```
 
-### 2\. Konfigurations-Datei (`.env`)
+### 2\. Configuration File (`.env`)
 
-Die Skripte laden vertrauliche Informationen (deinen API-Key und Dateipfade) aus einer `.env`-Datei, damit diese nicht auf GitHub landen.
+The scripts load sensitive information (your API key and file paths) from a `.env` file to keep them out of your code and off of GitHub.
 
-Erstelle im Hauptverzeichnis deines Projekts eine Datei namens `.env` und füge Folgendes ein:
+Create a new file named `.env` in the root directory of your project and add the following content:
 
 ```ini
-# Dein API-Key von Google AI Studio
-GEMINI_API_KEY="DEIN_ECHTER_API_KEY"
+# Your API Key from Google AI Studio
+GEMINI_API_KEY="YOUR_REAL_API_KEY"
 
-# Der vollständige Pfad zum Hauptordner deiner Mod-Lokalisierungsdateien
-FOLDER_PATH="C:/Pfad/zu/deinem/Mod-Ordner"
+# The full path to the main folder of your mod's localization files
+FOLDER_PATH="C:/Path/To/Your/Mod/Folder"
 
-# Der vollständige Pfad zur .yml Datei dessen Artikel korrigiert werden sollen
-FIX_ARTICLES_FILE_PATH="C:/Pfad/zu/deiner/YML-Datei"
+# The full path to the .yml file where the articles need to be fixed
+FIX_ARTICLES_FILE_PATH="C:/Path/To/Your/YML-File"
 ```
 
-**Wichtig:** Verwende in der `.env`-Datei normale Schrägstriche (`/`) oder doppelte Backslashes (`\\`) für den Pfad.
+**Important:** Use forward slashes (`/`) or double backslashes (`\\`) for the path in the `.env` file.
 
-### 3\. Git-Konfiguration (`.gitignore`)
+### 3\. Git Configuration (`.gitignore`)
 
-Um sicherzustellen, dass deine `.env`-Datei niemals auf GitHub hochgeladen wird, erstelle eine Datei namens `.gitignore` im Hauptverzeichnis und füge Folgendes ein:
+To ensure your `.env` file is never uploaded to GitHub, create a file named `.gitignore` in the root directory and add the following:
 
 ```
-# Ignoriere die Datei mit den Geheimnissen
+# Ignore the file with secrets
 .env
 
-# Ignoriere Log-Dateien
+# Ignore log files
 *.log
 ```
 
 -----
 
-## ➡️ Empfohlener Arbeitsablauf (Workflow)
+## ➡️ Recommended Workflow
 
-Die Skripte sollten in einer bestimmten Reihenfolge verwendet werden, um ein sauberes Ergebnis zu erzielen.
+The scripts should be used in a specific order to achieve a clean result.
 
-**Schritt 1: (Einmalig) Dateien vorbereiten**
+**Step 1: (One-Time) Prepare Files**
 
-  * Führe `update_files.py` aus, um deine englischen Originaldateien zu kopieren, sie in `_german.yml` umzubenennen und den Header von `l_english:` auf `l_german:` zu ändern.
+  * Run `update_files.py` to copy your original English files, rename them to end in `_german.yml`, and change the header from `l_english:` to `l_german:`.
 
-**Schritt 2: Hauptübersetzung**
+**Step 2: Main Translation**
 
-  * Führe das Hauptskript `translate_files.py` aus. Es wird durch alle Dateien gehen und die Massenübersetzung durchführen. Dieser Prozess kann je nach Umfang der Mod einige Zeit dauern. Du kannst ihn jederzeit anhalten und neu starten.
+  * Run the main script, `translate_files.py`. It will iterate through all files and perform the bulk translation. This process can take some time depending on the size of the mod. You can stop and restart it at any time.
 
-**Schritt 3: Spezialkorrektur für Artikel**
+**Step 3: Special Article Correction**
 
-  * Nachdem die Hauptübersetzung fertig ist, öffne das Skript `fix_articles.py`.
-  * Passe den Pfad in diesem Skript so an, dass er **exakt** auf die übersetzte `titles`-Datei zeigt (z.B. `lotr_titles_l_german.yml`).
-  * Führe `fix_articles.py` aus, um die grammatikalisch korrekten deutschen Artikel (`der, die, das`) automatisch einfügen zu lassen.
+  * After the main translation is complete, open the `fix_articles.py` script.
+  * Adjust the path in this script to point **exactly** to your translated `titles` file (e.g., `lotr_titles_l_german.yml`).
+  * Run `fix_articles.py` to automatically insert the correct German articles (`der, die, das`).
 
-**Schritt 4: Manuelle Nachbearbeitung**
+**Step 4: Manual Review**
 
-  * Prüfe, ob eine `translation_errors.log`-Datei erstellt wurde, und korrigiere die darin gelisteten Zeilen manuell.
-  * Überprüfe die Übersetzungen stichprobenartig im Spiel auf Kontext, Tonalität und Länge.
+  * Check if a `translation_errors.log` file was created and manually correct any lines listed within it.
+  * Spot-check the translations in-game for context, tone, and length.
 
 -----
 
-## 📜 Beschreibung der Skripte
+## 📜 Script Descriptions
 
   * **`translate_files.py`**
 
-      * Das Herzstück des Projekts. Führt die intelligente, absturzsichere Batch-Übersetzung durch.
+      * The core of the project. This script performs the intelligent, crash-proof, batch translation.
 
   * **`fix_articles.py`**
 
-      * Ein spezialisiertes Werkzeug zur Korrektur der deutschen Artikel (`der, die, das`) in Dateien, die Platzhalter wie `$the_$` verwenden (hauptsächlich die `titles`-Datei).
+      * A specialized tool to correct German articles (`der, die, das`) in files that use placeholders like `$the_$` (primarily the `titles` file).
 
   * **`update_files.py`**
 
-      * Ein einmaliges Setup-Skript, das die englischen Quelldateien für die Übersetzung ins Deutsche vorbereitet.
+      * A one-time setup script that prepares the source English files for translation.
 
   * **`cleanup_files.py`**
 
-      * **(Optional & Vorsicht\!)** Ein gefährliches Werkzeug, das alle `.yml`-Dateien in den Ordnern löscht, die **nicht** mit `lotr_` beginnen. Nützlich zum Aufräumen, aber mit Vorsicht zu genießen.
+      * **(Optional & Use with Caution\!)** A dangerous tool that deletes all `.yml` files in the folder that do **not** start with `lotr_`. Useful for cleaning up, but be careful.
 
-  * **Andere Skripte (`reset_markers.py`, `repair_quotes.py`, etc.)**
+  * **Other Scripts (`reset_markers.py`, `repair_quotes.py`, etc.)**
 
-      * Im Laufe der Entwicklung wurden verschiedene Reparatur-Skripte erstellt. Diese werden für den normalen Arbeitsablauf nicht benötigt, können aber zur Fehlerbehebung bei Problemen mit alten Übersetzungs-Durchläufen nützlich sein.
+      * Various repair scripts were created during the development process. These are not needed for the standard workflow but can be useful for troubleshooting issues from previous translation runs.
