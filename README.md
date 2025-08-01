@@ -26,7 +26,19 @@ Ensure you have Python 3 installed on your system. Then, install the necessary P
 pip install python-dotenv google-generativeai
 ```
 
-### 2\. Configuration File (`.env`)
+### 2\. Get a Google Gemini API Key
+
+This project requires a Google Gemini API key to function.
+
+1.  Go to **Google AI Studio**: [https://aistudio.google.com/](https://aistudio.google.com/)
+2.  Sign in with your Google account. You may need to set up a project on the Google Cloud Platform, which might require adding a billing method (a generous free tier is usually available for new users).
+3.  Click on **"Get API key"** in the menu.
+4.  Click **"Create API key"**.
+5.  Copy the generated key immediately.
+
+⚠️ **Important:** Treat your API key like a password. Do not share it or upload it to GitHub.
+
+### 3\. Create the Configuration File (`.env`)
 
 The scripts load sensitive information (your API key and file paths) from a `.env` file to keep them out of your code and off of GitHub.
 
@@ -38,14 +50,11 @@ GEMINI_API_KEY="YOUR_REAL_API_KEY"
 
 # The full path to the main folder of your mod's localization files
 FOLDER_PATH="C:/Path/To/Your/Mod/Folder"
-
-# The full path to the .yml file where the articles need to be fixed
-FIX_ARTICLES_FILE_PATH="C:/Path/To/Your/YML-File"
 ```
 
 **Important:** Use forward slashes (`/`) or double backslashes (`\\`) for the path in the `.env` file.
 
-### 3\. Git Configuration (`.gitignore`)
+### 4\. Git Configuration (`.gitignore`)
 
 To ensure your `.env` file is never uploaded to GitHub, create a file named `.gitignore` in the root directory and add the following:
 
