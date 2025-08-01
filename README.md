@@ -38,6 +38,9 @@ GEMINI_API_KEY="DEIN_ECHTER_API_KEY"
 
 # Der vollständige Pfad zum Hauptordner deiner Mod-Lokalisierungsdateien
 FOLDER_PATH="C:/Pfad/zu/deinem/Mod-Ordner"
+
+# Der vollständige Pfad zur .yml Datei dessen Artikel korrigiert werden sollen
+FIX_ARTICLES_FILE_PATH="C:/Pfad/zu/deiner/YML-Datei"
 ```
 
 **Wichtig:** Verwende in der `.env`-Datei normale Schrägstriche (`/`) oder doppelte Backslashes (`\\`) für den Pfad.
