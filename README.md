@@ -50,6 +50,9 @@ GEMINI_API_KEY="YOUR_REAL_API_KEY"
 
 # The full path to the main folder of your mod's localization files
 FOLDER_PATH="C:/Path/To/Your/Mod/Folder"
+
+# The full path to the .yml file where the articles need to be fixed
+FIX_ARTICLES_FILE_PATH="C:/Path/To/Your/YML-File"
 ```
 
 **Important:** Use forward slashes (`/`) or double backslashes (`\\`) for the path in the `.env` file.
