@@ -1,9 +1,3 @@
-Of course. An English README is a great idea for making your project accessible to a wider audience on GitHub.
-
-Here is a complete, translated version of the README file.
-
------
-
 # CK3 LotR Mod - Automated Translation Scripts
 
 This repository contains a collection of Python scripts designed to semi-automate the translation of localization files for a "Lord of the Rings" mod for the game Crusader Kings 3. The scripts use the Google Gemini API to translate English text to German, specifically tailored to handle the complex syntax and context of Paradox game files.
