@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-folder_to_translate = os.getenv("TRANSLATE_FOLDER_PATH")
+folder_to_translate = os.getenv("FOLDER_PATH")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=GEMINI_API_KEY)

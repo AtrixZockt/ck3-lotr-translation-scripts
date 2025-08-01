@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-folder_to_update = os.getenv("UPDATE_FOLDER_PATH")
+folder_to_update = os.getenv("FOLDER_PATH")
 
 def update_lotr_yml_files(main_folder):
     """

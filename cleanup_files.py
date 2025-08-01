@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-folder_to_cleanup = os.getenv("CLEANUP_TARGET_FOLDER_PATH")
+folder_to_cleanup = os.getenv("FOLDER_PATH")
 
 def delete_non_lotr_yml_files(main_folder):
     """
